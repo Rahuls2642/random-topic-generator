@@ -1,0 +1,467 @@
+/**
+ * Eloquent Design System - Design Tokens
+ * A focused, premium design system for spontaneous speaking practice
+ * Generated: 2026-10-01
+ */
+
+:root {
+  /* ================================
+     COLOR PRIMITIVES
+     ================================ */
+
+  /* Neutrals - Deep slate for focus */
+  --color-slate-950: #0a0e1a;
+  --color-slate-900: #0f1419;
+  --color-slate-800: #1a1f2e;
+  --color-slate-700: #2a3142;
+  --color-slate-600: #3d4557;
+  --color-slate-500: #6b7280;
+  --color-slate-400: #9ca3af;
+  --color-slate-300: #d1d5db;
+  --color-slate-200: #e5e7eb;
+  --color-slate-100: #f3f4f6;
+  --color-slate-50: #f9fafb;
+
+  /* Accent - Intellectual Blue */
+  --color-blue-900: #0c1e3d;
+  --color-blue-800: #1e3a5f;
+  --color-blue-700: #1e40af;
+  --color-blue-600: #2563eb;
+  --color-blue-500: #3b82f6;
+  --color-blue-400: #60a5fa;
+  --color-blue-300: #93c5fd;
+
+  /* Success - Emerald */
+  --color-emerald-900: #064e3b;
+  --color-emerald-800: #065f46;
+  --color-emerald-700: #047857;
+  --color-emerald-600: #059669;
+  --color-emerald-500: #10b981;
+  --color-emerald-400: #34d399;
+
+  /* Recording - Crimson */
+  --color-crimson-900: #450a0a;
+  --color-crimson-800: #7f1d1d;
+  --color-crimson-700: #991b1b;
+  --color-crimson-600: #dc2626;
+  --color-crimson-500: #ef4444;
+  --color-crimson-400: #f87171;
+
+  /* Attention - Amber */
+  --color-amber-700: #b45309;
+  --color-amber-600: #d97706;
+  --color-amber-500: #f59e0b;
+  --color-amber-400: #fbbf24;
+
+  /* Premium - Violet */
+  --color-violet-800: #5b21b6;
+  --color-violet-700: #6d28d9;
+  --color-violet-600: #7c3aed;
+  --color-violet-500: #8b5cf6;
+  --color-violet-400: #a78bfa;
+
+  /* ================================
+     SEMANTIC TOKENS
+     ================================ */
+
+  /* Surfaces */
+  --surface-base: var(--color-slate-950);
+  --surface-elevated: var(--color-slate-900);
+  --surface-overlay: var(--color-slate-800);
+  --surface-interactive: var(--color-slate-700);
+
+  /* Text */
+  --text-primary: var(--color-slate-50);
+  --text-secondary: var(--color-slate-400);
+  --text-tertiary: var(--color-slate-500);
+  --text-disabled: var(--color-slate-600);
+  --text-inverse: var(--color-slate-950);
+
+  /* Borders */
+  --border-subtle: var(--color-slate-800);
+  --border-default: var(--color-slate-700);
+  --border-strong: var(--color-slate-600);
+
+  /* States */
+  --state-focus: var(--color-blue-500);
+  --state-success: var(--color-emerald-500);
+  --state-recording: var(--color-crimson-500);
+  --state-warning: var(--color-amber-500);
+  --state-premium: var(--color-violet-500);
+
+  /* Interactive */
+  --interactive-primary: var(--color-blue-600);
+  --interactive-primary-hover: var(--color-blue-500);
+  --interactive-primary-active: var(--color-blue-700);
+  --interactive-success: var(--color-emerald-600);
+  --interactive-success-hover: var(--color-emerald-500);
+
+  /* ================================
+     COMPONENT TOKENS
+     ================================ */
+
+  /* Button - Primary */
+  --button-primary-bg: var(--interactive-primary);
+  --button-primary-bg-hover: var(--interactive-primary-hover);
+  --button-primary-text: var(--text-primary);
+
+  /* Button - Success */
+  --button-success-bg: var(--interactive-success);
+  --button-success-bg-hover: var(--interactive-success-hover);
+
+  /* Card */
+  --card-bg: var(--surface-elevated);
+  --card-border: var(--border-subtle);
+
+  /* Timer */
+  --timer-track: var(--border-default);
+  --timer-progress: var(--state-recording);
+  --timer-text: var(--text-primary);
+
+  /* ================================
+     TYPOGRAPHY
+     ================================ */
+
+  /* Font Families */
+  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Consolas', 'Liberation Mono', monospace;
+
+  /* Font Sizes - Display */
+  --text-display-2xl: 4.5rem;      /* 72px */
+  --text-display-xl: 3.75rem;      /* 60px */
+  --text-display-lg: 3rem;         /* 48px */
+
+  /* Font Sizes - Headings */
+  --text-heading-xl: 2.25rem;      /* 36px */
+  --text-heading-lg: 1.875rem;     /* 30px */
+  --text-heading-md: 1.5rem;       /* 24px */
+  --text-heading-sm: 1.25rem;      /* 20px */
+
+  /* Font Sizes - Body */
+  --text-body-xl: 1.25rem;         /* 20px */
+  --text-body-lg: 1.125rem;        /* 18px */
+  --text-body-base: 1rem;          /* 16px */
+  --text-body-sm: 0.875rem;        /* 14px */
+  --text-body-xs: 0.75rem;         /* 12px */
+
+  /* Font Sizes - Mono */
+  --text-mono-2xl: 4rem;           /* 64px */
+  --text-mono-xl: 3rem;            /* 48px */
+  --text-mono-lg: 2rem;            /* 32px */
+  --text-mono-base: 1rem;          /* 16px */
+
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Line Heights */
+  --leading-tight: 1.2;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 1.75;
+
+  /* ================================
+     SPACING
+     ================================ */
+
+  --space-0: 0;
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+  --space-32: 8rem;     /* 128px */
+
+  /* Semantic Spacing */
+  --spacing-section: var(--space-24);
+  --spacing-component: var(--space-12);
+  --spacing-element: var(--space-6);
+  --spacing-inline: var(--space-4);
+  --spacing-compact: var(--space-2);
+
+  /* ================================
+     ELEVATION & SHADOWS
+     ================================ */
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px -1px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+
+  /* Glows */
+  --glow-blue: 0 0 20px rgba(59, 130, 246, 0.3);
+  --glow-emerald: 0 0 20px rgba(16, 185, 129, 0.3);
+  --glow-crimson: 0 0 20px rgba(239, 68, 68, 0.3);
+  --glow-violet: 0 0 20px rgba(139, 92, 246, 0.3);
+
+  /* ================================
+     BORDER RADIUS
+     ================================ */
+
+  --radius-sm: 0.375rem;   /* 6px */
+  --radius-base: 0.5rem;   /* 8px */
+  --radius-md: 0.75rem;    /* 12px */
+  --radius-lg: 1rem;       /* 16px */
+  --radius-xl: 1.5rem;     /* 24px */
+  --radius-2xl: 2rem;      /* 32px */
+  --radius-full: 9999px;
+
+  /* ================================
+     Z-INDEX
+     ================================ */
+
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+
+  /* ================================
+     ANIMATION
+     ================================ */
+
+  /* Timing Functions */
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.45, 0.05, 0.55, 0.95);
+
+  /* Durations */
+  --duration-instant: 100ms;
+  --duration-fast: 200ms;
+  --duration-base: 300ms;
+  --duration-slow: 500ms;
+  --duration-deliberate: 700ms;
+
+  /* ================================
+     BREAKPOINTS
+     ================================ */
+
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+/* ================================
+   ANIMATION KEYFRAMES
+   ================================ */
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes progress-ring {
+  from {
+    stroke-dashoffset: 301.59;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ================================
+   UTILITY CLASSES
+   ================================ */
+
+.animate-enter {
+  animation: enter var(--duration-base) var(--ease-out);
+}
+
+.animate-slide-up {
+  animation: slide-up var(--duration-base) var(--ease-out);
+}
+
+.animate-slide-down {
+  animation: slide-down var(--duration-base) var(--ease-out);
+}
+
+.animate-fade-in {
+  animation: fade-in var(--duration-base) var(--ease-out);
+}
+
+.animate-pulse {
+  animation: pulse 2s var(--ease-in-out) infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s var(--ease-in-out) infinite;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+/* ================================
+   ACCESSIBILITY
+   ================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus visible styles */
+:focus-visible {
+  outline: 2px solid var(--state-focus);
+  outline-offset: 2px;
+}
+
+/* Remove default focus styles for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ================================
+   BASE STYLES
+   ================================ */
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-body-base);
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+  background-color: var(--surface-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--leading-snug);
+  color: var(--text-primary);
+}
+
+h1 {
+  font-size: var(--text-heading-xl);
+}
+
+h2 {
+  font-size: var(--text-heading-lg);
+}
+
+h3 {
+  font-size: var(--text-heading-md);
+}
+
+h4 {
+  font-size: var(--text-heading-sm);
+}
+
+code, pre {
+  font-family: var(--font-mono);
+}
