@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Mic, Square, ArrowLeft, Sparkles, Circle, Brain, Timer, Activity, Video } from 'lucide-react';
+import { Mic, Square, ArrowLeft, Sparkles, Circle, Brain, Timer, Activity, Video, ChevronDown } from 'lucide-react';
 import type { AppState, Topic, ChallengeResult } from './types';
 import { generateRandomTopic } from './mockData';
 
@@ -20,6 +20,12 @@ function App() {
   const [useVideo, setUseVideo] = useState<boolean>(false);
   const [mediaStream, setMediaStream] = useState<MediaStream | null>(null);
   const [isGettingFeedback, setIsGettingFeedback] = useState<boolean>(false);
+  const [isGeneratingBetter, setIsGeneratingBetter] = useState<boolean>(false);
+  const [betterVersion, setBetterVersion] = useState<string | null>(null);
+  const [selectedGenre, setSelectedGenre] = useState<string>('Any');
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+
+  const GENRES = ['Any', 'Science', 'History', 'Math', 'Mystery', 'Gaming', 'Technology', 'Philosophy', 'Art', 'Sports'];
 
   // Handle browser back button
   useEffect(() => {
@@ -73,7 +79,7 @@ function App() {
 
   const handleGenerate = async () => {
     navigateTo('generating');
-    const newTopic = await generateRandomTopic();
+    const newTopic = await generateRandomTopic(selectedGenre);
     setTopic(newTopic);
     setAppState('topic_reveal');
   };
@@ -110,6 +116,7 @@ function App() {
             date: new Date()
           };
           setResult(newResult);
+          setBetterVersion(null);
           
           // Trigger feedback asynchronously
           setIsGettingFeedback(true);
@@ -176,6 +183,21 @@ function App() {
     }
   };
 
+  const handleGenerateBetter = async () => {
+    if (!result || !result.feedback) return;
+    setIsGeneratingBetter(true);
+    try {
+      const { generateBetterVersion } = await import('./mockData');
+      const improved = await generateBetterVersion(result.topic.title, result.feedback.transcript);
+      setBetterVersion(improved);
+    } catch (err) {
+      console.error(err);
+      setBetterVersion("Sorry, we encountered an error generating the better version.");
+    } finally {
+      setIsGeneratingBetter(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white flex flex-col">
 
@@ -198,7 +220,39 @@ function App() {
                 Improve your communication skills. Get a random topic, record yourself speaking for 60 seconds, and receive instant AI-powered feedback on your delivery and content.
               </p>
 
-              <div className="flex justify-center pt-4">
+              <div className="flex flex-col items-center justify-center pt-4 space-y-6">
+                <div className="relative">
+                  <button 
+                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    className="flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-3 rounded-full hover:bg-white/10 transition-colors"
+                  >
+                    <span className="text-sm text-white/60">Topic Genre:</span>
+                    <span className="text-sm font-medium text-emerald-400">{selectedGenre}</span>
+                    <ChevronDown className={`w-4 h-4 text-white/60 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                  </button>
+
+                  {isDropdownOpen && (
+                    <div className="absolute top-full left-0 right-0 mt-2 bg-[#0a0a0a] border border-white/10 rounded-2xl overflow-hidden shadow-2xl z-50">
+                      <div className="max-h-60 overflow-y-auto">
+                        {GENRES.map(g => (
+                          <button
+                            key={g}
+                            onClick={() => {
+                              setSelectedGenre(g);
+                              setIsDropdownOpen(false);
+                            }}
+                            className={`w-full text-left px-6 py-3 text-sm transition-colors hover:bg-white/5 ${
+                              selectedGenre === g ? 'text-emerald-400 bg-emerald-500/10' : 'text-white/80'
+                            }`}
+                          >
+                            {g}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
                 <button
                   onClick={handleGenerate}
                   className="group relative px-10 py-5 bg-white text-black text-lg font-medium rounded-full hover:bg-white/90 transition-all duration-200 active:scale-95 shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)]"
@@ -627,6 +681,37 @@ function App() {
                            ))}
                          </ul>
                        </div>
+                     </div>
+                     <div className="pt-6 border-t border-white/10 flex flex-col items-center">
+                       {betterVersion ? (
+                         <div className="w-full space-y-3">
+                           <h4 className="font-medium text-emerald-400 flex items-center gap-2">
+                             <Sparkles className="w-4 h-4" />
+                             An Ideal 60-Second Version
+                           </h4>
+                           <p className="text-sm text-white/80 leading-relaxed p-4 bg-emerald-500/10 rounded-xl border border-emerald-500/20">
+                             "{betterVersion}"
+                           </p>
+                         </div>
+                       ) : (
+                         <button
+                           onClick={handleGenerateBetter}
+                           disabled={isGeneratingBetter}
+                           className="flex items-center gap-2 px-6 py-3 bg-emerald-500/20 text-emerald-400 text-sm font-medium rounded-full hover:bg-emerald-500/30 transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed border border-emerald-500/30"
+                         >
+                           {isGeneratingBetter ? (
+                             <>
+                               <div className="w-4 h-4 border-2 border-emerald-400/20 border-t-emerald-400 rounded-full animate-spin" />
+                               Generating...
+                             </>
+                           ) : (
+                             <>
+                               <Sparkles className="w-4 h-4" />
+                               Generate Better Version
+                             </>
+                           )}
+                         </button>
+                       )}
                      </div>
                    </div>
                 ) : (

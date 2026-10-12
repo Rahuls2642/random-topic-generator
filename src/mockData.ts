@@ -65,16 +65,23 @@ const FALLBACK_TOPIC: Topic = {
   ]
 };
 
-export const generateRandomTopic = async (): Promise<Topic> => {
+export const generateRandomTopic = async (genre: string = 'Any'): Promise<Topic> => {
   if (!apiKey) {
     console.warn("No Groq API key found. Using fallback topic. Set VITE_GROQ_API_KEY in .env.local");
     return FALLBACK_TOPIC;
   }
 
+  let promptModifier = "";
+  if (genre !== 'Any') {
+    promptModifier = `\nCRITICAL REQUIREMENT: The topic MUST be related to the genre: ${genre}.\n`;
+  }
+
+  const promptWithGenre = SYSTEM_PROMPT + promptModifier;
+
   try {
     const chatCompletion = await groq.chat.completions.create({
       messages: [
-        { role: 'system', content: SYSTEM_PROMPT },
+        { role: 'system', content: promptWithGenre },
         { role: 'user', content: 'Generate a new random knowledge topic.' }
       ],
       model: 'openai/gpt-oss-20b', // Current text model available on your API key
@@ -155,4 +162,39 @@ Return ONLY a JSON object with the following structure:
     improvements: feedback.improvements || [],
     overall: feedback.overall || "Good attempt!"
   };
+};
+
+export const generateBetterVersion = async (topicTitle: string, userTranscript: string) => {
+  if (!apiKey) {
+    throw new Error("No Groq API key found.");
+  }
+  
+  const SYSTEM_PROMPT = `You are an expert public speaking coach and speechwriter. The user just gave a 60-second speech on the topic: "${topicTitle}".
+Their transcript was:
+"${userTranscript}"
+
+Write an improved, ideal 60-second version (approx 130-150 words) of this speech. 
+Make it engaging, well-structured (with a hook, clear main points, and a strong conclusion), and concise.
+Return ONLY a JSON object with the following structure:
+{
+  "improvedSpeech": string
+}`;
+
+  try {
+    const completion = await groq.chat.completions.create({
+      messages: [
+        { role: 'system', content: SYSTEM_PROMPT }
+      ],
+      model: 'openai/gpt-oss-20b',
+      temperature: 0.7,
+      response_format: { type: 'json_object' }
+    });
+
+    const content = completion.choices[0]?.message?.content || '{}';
+    const parsed = JSON.parse(content);
+    return parsed.improvedSpeech || "Failed to generate improved speech.";
+  } catch (err) {
+    console.error("Failed to generate better version", err);
+    return "Sorry, we encountered an error generating the better version.";
+  }
 };
